@@ -17,6 +17,7 @@ tokens = (
 t_CHARACTER    = r'[a-zA-z_\.]'
 t_DELIMITER   = r'[\(\):@,\;]'
 t_OPERATOR  = r'[\+\-\*=]'
+
 def t_DIGIT(t):
     r'\d+'
     try:
@@ -25,6 +26,7 @@ def t_DIGIT(t):
         print("Integer value too large %d", t.value)
         t.value = 0
     return t
+
 t_ignore  = ' \t \n'    
 # Error handling rule
 def t_error(t):
