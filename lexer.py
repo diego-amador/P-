@@ -9,14 +9,32 @@ import ply.lex as lex
 tokens = (
    'CHARACTER',
    'DIGIT',
-   'DELIMITER',
-   'OPERATOR'
+   'COLON',
+   'ASSIGN',
+   'END',
+   'LPAREN',
+   'RPAREN',
+   'LBRACKET',
+   'RBRACKET',
+   'REGARDING',
+   'COMMA',
+   'DOT',
+   'OPERATOR', 
 )
 
 # Regular expression rules for simple tokens
-t_CHARACTER    = r'[a-zA-z_\.]'
-t_DELIMITER   = r'[\(\):@,\;]'
-t_OPERATOR  = r'[\+\-\*=]'
+t_CHARACTER    = r'[a-zA-z_]'
+t_COLON = r'\:'
+t_ASSIGN = r'\='
+t_END = r'\;'
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_LBRACKET = r'\{'
+t_RBRACKET = r'\}'
+t_REGARDING = r'\@'
+t_COMMA = r'\,'
+t_DOT = r'\.'
+t_OPERATOR  = r'[\+\-\*]'
 
 def t_DIGIT(t):
     r'\d+'
