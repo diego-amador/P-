@@ -1,11 +1,10 @@
 
 # -----------------------------------------------------------------------------
-# parser.py
-# A parser for the P++ Language.
+# lexer.py
+# A lecer for the P++ Language.
 # -----------------------------------------------------------------------------
 
 import ply.lex as lex
-import ply.yacc as yacc
 # List of token names.   This is always required
 tokens = (
    'CHARACTER',
