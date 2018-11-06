@@ -4,3 +4,6 @@
 # A parser for the P++ Language.
 # -----------------------------------------------------------------------------
 import ply.yacc as yacc
+
+#token map
+from lexer import tokens
