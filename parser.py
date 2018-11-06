@@ -1,6 +1,9 @@
-"""
-Parser for the P++ Language
-"""
+
+# -----------------------------------------------------------------------------
+# parser.py
+# A parser for the P++ Language.
+# -----------------------------------------------------------------------------
+
 import ply.lex as lex
 import ply.yacc as yacc
 # List of token names.   This is always required
