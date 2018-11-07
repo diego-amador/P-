@@ -8,12 +8,10 @@ import ply.yacc as yacc
 #token map
 from lexer import tokens
 
-def p_variable_assignment(p):
-    'expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END'
-def p_appending(p):
-    'expression : APPEND ID TO ID END'
-def p_rotating(p):
-    'expression : ROTATE ID AROUND ID END'
+def p_expression(p):
+    """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END
+                 | APPEND ID TO ID END
+                 | ROTATE ID AROUND ID END """
 def p_param_list(p):
     """ParameterList : Parameter AND ParameterList 
                      | Parameter 
@@ -30,9 +28,7 @@ def p_function(p):
                 | CIRCLE 
                 | GRID 
                 | LINE """
-def p_idlist(p):
-    """IdList : ID AND IdList 
-              | ID"""
+
 def p_location(p):
     'Location : REGARDING Coordinate'
 def p_coordinate(p):
@@ -51,10 +47,10 @@ parser = yacc.yacc()
 while True:
    try:
        s = '''
-draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
-draw:Circle(radius = 5, color = "red");
-draw:Grid(x=300 , y = 300);
-draw:Line(@A);
+A = draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
+B = draw:Circle(radius = 5, color = "red");
+C = draw:Grid(x=300 , y = 300);
+D = draw:Line()@A;
 
 '''
    except EOFError:
