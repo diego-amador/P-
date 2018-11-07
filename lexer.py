@@ -7,6 +7,7 @@
 import ply.lex as lex
 # List of token names.   This is always required
 tokens = (
+    'ID',
    'CHARACTER',
    'DIGIT',
    'COLON',
@@ -20,6 +21,17 @@ tokens = (
    'COMMA',
    'DOT',
    'OPERATOR', 
+   'QUOTE', 
+   'DRAW',
+   'APPEND',
+   'TO',
+   'ROTATE',
+   'AROUND',
+   'AND',
+   'SIN',
+   'CIRCLE',
+   'GRID',
+   'LINE'
 )
 
 # Regular expression rules for simple tokens
@@ -35,7 +47,7 @@ t_REGARDING = r'\@'
 t_COMMA = r'\,'
 t_DOT = r'\.'
 t_OPERATOR  = r'[\+\-\*]'
-
+t_QUOTE = r'\"'
 def t_DIGIT(t):
     r'\d+'
     try:
@@ -44,9 +56,24 @@ def t_DIGIT(t):
         print("Integer value too large %d", t.value)
         t.value = 0
     return t
-
-t_ignore  = ' \t \n'
- 
+reserved = {
+   'draw'   : 'DRAW',
+   'append' : 'APPEND',
+   'to'     : 'TO',
+   'rotate' : 'ROTATE',
+   'around' : 'AROUND',
+   'and'    : 'AND',
+   'sin'    : 'SIN',
+   'circle' : 'CIRCLE',
+   'grid'   : 'GRID',
+   'line'   : 'LINE'
+}
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    if t.value in reserved:
+        t.type = reserved[ t.value ]
+    return t
+t_ignore  = ' \t \n'    
 # Error handling rule
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
@@ -58,11 +85,10 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
-CircleOne =DRAW.Circle(100);
-CircleTwo = DRAW.Circle(50);
-CircleTwo:AddLineTrace(Radius);
-
-CircleTwo.Orbit(CircleOne);
+draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
+draw:Circle(radius = 5, color = "red");
+draw:Grid(x=300 , y = 300);
+draw:Line(@A);
 
 '''
 
