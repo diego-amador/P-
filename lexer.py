@@ -77,7 +77,7 @@ def t_ID(t):
         t.type = reserved[ t.value ]
     return t
 
-t_ignore  = ' \t \n'
+t_ignore  = ' \t\n'
 
 # Error handling rule
 def t_error(t):
@@ -88,13 +88,13 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''
-draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
-draw:Circle(radius = 5, color = "red");
-draw:Grid(x=300 , y = 300);
-draw:Line(@A);
+data = '''draw:Sine(amplitude = 9 and frequency = 100 and color = "blue");
 
 '''
+#draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
+#draw:Circle(radius = 5, color = "red");
+#draw:Grid(x=300 , y = 300);
+#draw:Line(@A);
 
 # Give the lexer some input
 lexer.input(data)

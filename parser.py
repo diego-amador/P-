@@ -11,11 +11,11 @@ from lexer import tokens
 def p_expression(p):
     """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END
                  | APPEND ID TO ID END
-                 | ROTATE ID AROUND ID END """
+                 | ROTATE ID AROUND ID END"""
 def p_param_list(p):
     """ParameterList : Parameter AND ParameterList 
                      | Parameter 
-                     | empty """
+                     | empty"""
 def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
                  | ID ASSIGN String"""
@@ -27,7 +27,7 @@ def p_function(p):
     """Function : SIN 
                 | CIRCLE 
                 | GRID 
-                | LINE """
+                | LINE"""
 
 def p_location(p):
     'Location : REGARDING Coordinate'
@@ -44,18 +44,18 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-while True:
-   try:
-       s = '''
-A = draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
-B = draw:Circle(radius = 5, color = "red");
-C = draw:Grid(x=300 , y = 300);
-D = draw:Line()@A;
 
+s = ''' append S to B ;
 '''
-   except EOFError:
+result = parser.parse(s)
+print(result)
+
+"""while True:
+   try:
+      s = raw_input('calc > ')
+      except EOFError:
        break
    if not s: continue
    result = parser.parse(s)
    print(result)
-
+   """
