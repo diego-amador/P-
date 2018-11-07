@@ -8,30 +8,30 @@ import ply.lex as lex
 # List of token names.   This is always required
 tokens = (
     'ID',
-   'CHARACTER',
-   'DIGIT',
-   'COLON',
-   'ASSIGN',
-   'END',
-   'LPAREN',
-   'RPAREN',
-   'LBRACKET',
-   'RBRACKET',
-   'REGARDING',
-   'COMMA',
-   'DOT',
-   'OPERATOR', 
-   'QUOTE', 
-   'DRAW',
-   'APPEND',
-   'TO',
-   'ROTATE',
-   'AROUND',
-   'AND',
-   'SIN',
-   'CIRCLE',
-   'GRID',
-   'LINE'
+    'CHARACTER',
+    'DIGIT',
+    'COLON',
+    'ASSIGN',
+    'END',
+    'LPAREN',
+    'RPAREN',
+    'LBRACKET',
+    'RBRACKET',
+    'REGARDING',
+    'COMMA',
+    'DOT',
+    'OPERATOR', 
+    'QUOTE', 
+    'DRAW',
+    'APPEND',
+    'TO',
+    'ROTATE',
+    'AROUND',
+    'AND',
+    'SIN',
+    'CIRCLE',
+    'GRID',
+    'LINE'
 )
 
 # Regular expression rules for simple tokens
@@ -48,6 +48,7 @@ t_COMMA = r'\,'
 t_DOT = r'\.'
 t_OPERATOR  = r'[\+\-\*]'
 t_QUOTE = r'\"'
+
 def t_DIGIT(t):
     r'\d+'
     try:
@@ -56,6 +57,7 @@ def t_DIGIT(t):
         print("Integer value too large %d", t.value)
         t.value = 0
     return t
+
 reserved = {
    'draw'   : 'DRAW',
    'append' : 'APPEND',
@@ -68,17 +70,19 @@ reserved = {
    'grid'   : 'GRID',
    'line'   : 'LINE'
 }
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
-t_ignore  = ' \t \n'    
+
+t_ignore  = ' \t \n'
+
 # Error handling rule
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
-
 
 # Build the lexer
 lexer = lex.lex()
