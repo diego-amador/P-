@@ -88,11 +88,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''A = draw:sin(amplitude = 9 and frequency = 100 and color = "blue" and line = "dot"); 
-B = draw:circle(radius = 5 and color = "red");
-C = draw:grid(x=300 and y = 300);
-D = draw:line()@A;
-
+data = '''append A to B ;
 '''
 """
 # Give the lexer some input
