@@ -18,7 +18,8 @@ def p_param_list(p):
                      | empty"""
 def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
-                 | ID ASSIGN String"""
+                 | ID ASSIGN String
+                 | LINE ASSIGN String """
 def p_string(p) :
     'String : QUOTE ID QUOTE'
 def p_operation(p):
@@ -45,18 +46,18 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
+<<<<<<< HEAD
 
 s = ''' draw:Sine(amplitude = 9 and frequency = 100 and color = "blue" and line = dot);
+=======
+s = '''A = draw:sin(amplitude = 9 and frequency = 100 and color = "blue" and line = "dot"); 
+B = draw:circle(radius = 5 and color = "red"); 
+C = draw:grid(x=300 and y = 300); 
+D = draw:line()@A;
+>>>>>>> 232fc6f550bfc58972ce4ee78aa9cad41ad160a0
 '''
+
+
 result = parser.parse(s)
 print(result)
 
-"""while True:
-   try:
-      s = raw_input('calc > ')
-      except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   print(result)
-   """
