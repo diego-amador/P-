@@ -18,7 +18,8 @@ def p_param_list(p):
                      | empty """
 def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
-                 | ID ASSIGN String"""
+                 | ID ASSIGN String
+                 | LINE ASSIGN String """
 def p_string(p) :
     'String : QUOTE ID QUOTE'
 def p_operation(p):
@@ -30,7 +31,8 @@ def p_function(p):
                 | LINE """
 
 def p_location(p):
-    'Location : REGARDING Coordinate'
+    """Location : REGARDING Coordinate
+                | empty"""
 def p_coordinate(p):
     """Coordinate : ID 
                   | LPAREN DIGIT COMMA DIGIT RPAREN"""
@@ -44,18 +46,14 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-while True:
-   try:
-       s = '''
-A = draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
-B = draw:Circle(radius = 5, color = "red");
-C = draw:Grid(x=300 , y = 300);
-D = draw:Line()@A;
+s = '''A = draw:sin(amplitude = 9 and frequency = 100 and color = "blue" and line = "dot"); 
+B = draw:circle(radius = 5 and color = "red"); 
+C = draw:grid(x=300 and y = 300); 
+D = draw:line()@A;
 
 '''
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   print(result)
+
+
+result = parser.parse(s)
+print(result)
 

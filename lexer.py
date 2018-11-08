@@ -88,14 +88,13 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''
-draw:Sine(amplitude = 9, frequency = 100, color = "blue", line = dot);
-draw:Circle(radius = 5, color = "red");
-draw:Grid(x=300 , y = 300);
-draw:Line(@A);
+data = '''A = draw:sin(amplitude = 9 and frequency = 100 and color = "blue" and line = "dot"); 
+B = draw:circle(radius = 5 and color = "red");
+C = draw:grid(x=300 and y = 300);
+D = draw:line()@A;
 
 '''
-
+"""
 # Give the lexer some input
 lexer.input(data)
 
@@ -105,3 +104,4 @@ while True:
     if not tok: 
         break      # No more input
     print(tok)
+"""
