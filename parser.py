@@ -22,16 +22,24 @@ def p_param_list(p):
     """ParameterList : Parameter AND ParameterList 
                      | Parameter 
                      | empty"""
+    if len(p) == 1: p[0] = ''
+    elif len(p) < 3: p[0] = p[1]
+    else: p[0]  = p[1] + ' ' + p[2] + ' ' + p[3]
+
 def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
                  | ID ASSIGN String
                  | LINE ASSIGN String """
+    p[0] = p[1] + ' ' + p[2] + ' ' + str(p[3])
+
 def p_string(p) :
     'String : QUOTE ID QUOTE'
-    p[0] = p[1]
+    p[0] = p[2]
+
 def p_operation(p):
     'Operation : DRAW'
-    p[0] = "draw"
+    p[0] = "draw"   #No other function other than draw as of now
+
 def p_function(p):
     """Function : SIN 
                 | CIRCLE 
@@ -41,21 +49,22 @@ def p_function(p):
     elif p[1] == 'circle' : p[0] = 'circle'
     elif p[1] == 'grid' : p[0] = 'grid'
     elif p[1] == 'line' : p[0] = 'line'
-    
 
 def p_location(p):
     """Location : REGARDING Coordinate
                 | empty"""
-    print(*p)
-    p[0] = p[1] + ' ' + p[2]
+    if p[1] == '@': p[0] = p[1] + ' ' + p[2]
+    else: p[0] = 'DEFAULT'  #This is the indicator to choose default paramters
+
 def p_coordinate(p):
     """Coordinate : ID 
                   | LPAREN DIGIT COMMA DIGIT RPAREN"""
-    print(*p)
     p[0] = p[1]
+
 def p_empty(p):
     'empty :'
     pass
+
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
@@ -63,7 +72,7 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-s = '''A = draw : sin (color = "blue") @ a ; 
+s = '''A = draw : sin (color = "blue" and amplitud = 5); 
 '''
 
 result = parser.parse(s)
