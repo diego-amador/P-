@@ -30,7 +30,8 @@ def p_function(p):
                 | LINE"""
 
 def p_location(p):
-    'Location : REGARDING Coordinate'
+    """Location : REGARDING Coordinate
+                | empty"""
 def p_coordinate(p):
     """Coordinate : ID 
                   | LPAREN DIGIT COMMA DIGIT RPAREN"""
@@ -45,7 +46,7 @@ def p_error(p):
 parser = yacc.yacc()
 
 
-s = ''' append S to B ;
+s = ''' draw:Sine(amplitude = 9 and frequency = 100 and color = "blue" and line = dot);
 '''
 result = parser.parse(s)
 print(result)
