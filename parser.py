@@ -11,11 +11,11 @@ from lexer import tokens
 def p_expression(p):
     """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END
                  | APPEND ID TO ID END
-                 | ROTATE ID AROUND ID END """
+                 | ROTATE ID AROUND ID END"""
 def p_param_list(p):
     """ParameterList : Parameter AND ParameterList 
                      | Parameter 
-                     | empty """
+                     | empty"""
 def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
                  | ID ASSIGN String
@@ -28,7 +28,7 @@ def p_function(p):
     """Function : SIN 
                 | CIRCLE 
                 | GRID 
-                | LINE """
+                | LINE"""
 
 def p_location(p):
     """Location : REGARDING Coordinate
@@ -50,7 +50,6 @@ s = '''A = draw:sin(amplitude = 9 and frequency = 100 and color = "blue" and lin
 B = draw:circle(radius = 5 and color = "red"); 
 C = draw:grid(x=300 and y = 300); 
 D = draw:line()@A;
-
 '''
 
 

@@ -77,7 +77,7 @@ def t_ID(t):
         t.type = reserved[ t.value ]
     return t
 
-t_ignore  = ' \t \n'
+t_ignore  = ' \t\n'
 
 # Error handling rule
 def t_error(t):
