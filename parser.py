@@ -26,7 +26,7 @@ def p_expression_ID(p):
         generator.run()
     else:
         p[0] = p[1]
-        generator.render(p[0])  
+        generator.render(p[5])  
     print (*p)  #OPTIONAL FOR NOW
 
 
@@ -108,9 +108,8 @@ def translateCode(p):
 
 
 
-s = '''A = draw : sin (); 
-'''
+#s = '''A = draw : sin (); '''
 
-result = parser.parse(s)
-print(result)
+#result = parser.parse(s)
+#print(result)
 

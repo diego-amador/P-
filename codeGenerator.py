@@ -1,7 +1,7 @@
 
 initialCode = []
 variables = {}
-sineWave = ["void renderWave() {"]
+sinewaveCode = ["void renderWave() {"]
 
 def render(function):
     createInitialCode()
@@ -135,7 +135,7 @@ def renderWave():
                     "ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); \n" \
                     "} \n" \
                     "} \n" 
-def upload():
+def run():
     finalCode = initialCode[0]
 
     finalCode += sinewaveCode
