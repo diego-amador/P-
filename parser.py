@@ -11,13 +11,15 @@ import os
 from lexer import tokens
 
 def p_expression_ID(p):
-    """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END
-                 | APPEND ID TO ID END
-                 | ROTATE ID AROUND ID END"""
+    """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC
+                 | APPEND ID TO ID SEMIC
+                 | ROTATE ID AROUND ID SEMIC
+                 | START
+                 | END"""
     # if p[1] == 'append'     : p[0] = p[0]
     # elif p[1] == 'rotate'   : p[0] = p[0]
     # else                    : p[0] = p[0]
-    if p[1] == 'ID':
+    if p[1] == 'START':
         if os.path.isfile("PPP.pde"):
             os.remove("PPP.pde")
     elif p[1] == 'END':
@@ -53,9 +55,7 @@ def p_function(p):
     """Function : SIN 
                 | CIRCLE 
                 | GRID 
-                | LINE
-                | START
-                | END"""
+                | LINE"""
     p[0] = p[1]
 
     # if p[1] == 'START':
