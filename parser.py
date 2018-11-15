@@ -4,7 +4,8 @@
 # A parser for the P++ Language.
 # -----------------------------------------------------------------------------
 import ply.yacc as yacc
-import CodeGenerator as generator
+import codeGenerator as generator
+import os
 
 #token map
 from lexer import tokens
@@ -53,10 +54,10 @@ def p_function(p):
         if os.path.isfile("PPP.pde"):
             os.remove("PPP.pde")
     elif p[1] == 'END':
-        generate.run()
+        generator.run()
     else:
-    p[0] = p[1]
-    generator.render(p[0])     
+        p[0] = p[1]
+        generator.render(p[0])     
  
 def p_location(p):
     """Location : REGARDING Coordinate
@@ -82,6 +83,22 @@ def p_error(p):
 
 # Build the parser
 parser = yacc.yacc()
+
+def translateCode(p):
+    try:
+        PPPSource = open(p, 'r')
+    except IOError:
+        print("Error opening file")
+        exit()
+
+    for line in PPPSource:
+        try:
+            parser.parse(line)
+        except IOError:
+            print("Error opening file!")
+            exit()
+
+
 
 s = '''A = draw : circle (radius = 5 and color = "blue") @ (1, 5); 
 '''
