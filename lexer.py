@@ -71,8 +71,8 @@ reserved = {
    'circle' : 'CIRCLE',
    'grid'   : 'GRID',
    'line'   : 'LINE',
-   'start'  : 'START',
-   'end'    : 'END'
+   'START'  : 'START',
+   'END'    : 'END'
 }
 
 def t_ID(t):
