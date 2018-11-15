@@ -1,1 +1,1 @@
-append A to B
+A = draw: sin ();
