@@ -1,13 +1,15 @@
+import os
+import subprocess
 
 initialCode = []
+sinewaveCode = []
 variables = {}
 sineWave = ["void renderWave() {"]
 
 def render(function):
-    createInitialCode()
-
-    if function == "SIN":
-        renderWave()
+        createInitialCode()
+        if function[3] == 'sin':
+                renderWave()
     
 def createInitialCode():
     defaultCode =   "Graph graph; \n" \
@@ -127,21 +129,26 @@ def createInitialCode():
     initialCode.append(defaultCode)
 
 def renderWave():
-     sinewaveCode = "void renderWave() { \n" \
+        swc = "void renderWave() { \n" \
                     "noStroke(); \n" \
                     "fill(255); \n" \
                     "// A simple way to draw the wave with an ellipse at each location \n" \
                     "for (int x = 0; x < yvalues.length; x++) { \n" \
                     "ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); \n" \
                     "} \n" \
-                    "} \n" 
+                    "} \n"
+        sinewaveCode.append(swc)
+
 def upload():
     finalCode = initialCode[0]
 
-    finalCode += sinewaveCode
-    finalCode += "}"
+    finalCode += sinewaveCode[0]
 
     filePath = "PPP.pde"
     ProcessingCode = open(filePath, 'w')
     ProcessingCode.write(finalCode)
     ProcessingCode.close()
+
+
+def cleanUpload():
+        os.system( "upload clean")

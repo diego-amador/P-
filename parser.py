@@ -11,21 +11,23 @@ import os
 from lexer import tokens
 
 def p_expression_ID(p):
-    """expresion : ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location END
-                 | APPEND ID TO ID END
-                 | ROTATE ID AROUND ID END"""
-    # if p[1] == 'append'     : p[0] = p[0]
-    # elif p[1] == 'rotate'   : p[0] = p[0]
-    # else                    : p[0] = p[0]
-    if p[1] == 'ID':
+    """expresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SCOLON END
+                 | APPEND ID TO ID SCOLON
+                 | ROTATE ID AROUND ID SCOLON
+                 | START
+                 | END"""
+
+    if p[1] == 'START':
         if os.path.isfile("PPP.pde"):
             os.remove("PPP.pde")
-    elif p[1] == 'END':
-        generator.run()
-    else:
-        p[0] = p[1]
-        generator.render(p[0])  
-    print (*p)  #OPTIONAL FOR NOW
+    p[0] = (p[2], p[3], p[4], p[6], p[8], p[10])
+    generator.render(p[0])
+
+    if p[12] == 'END':
+        generator.upload()
+        # generator.cleanUpload()
+        print("upload complete")
+
 
 
 def p_param_list(p):
@@ -53,19 +55,9 @@ def p_function(p):
     """Function : SIN 
                 | CIRCLE 
                 | GRID 
-                | LINE
-                | START
-                | END"""
+                | LINE"""
     p[0] = p[1]
-
-    # if p[1] == 'START':
-    #     if os.path.isfile("PPP.pde"):
-    #         os.remove("PPP.pde")
-    # elif p[1] == 'END':
-    #     generator.run()
-    # else:
-    #     p[0] = p[1]
-    #     generator.render(p[0])     
+   
  
 def p_location(p):
     """Location : REGARDING Coordinate
@@ -93,6 +85,7 @@ def p_error(p):
 parser = yacc.yacc()
 
 def translateCode(p):
+    print(*p)
     try:
         PPPSource = open(p, 'r')
     except IOError:
@@ -108,9 +101,10 @@ def translateCode(p):
 
 
 
-s = '''A = draw : sin (); 
+s = '''START
+A = draw : sin ();
+END
 '''
 
 result = parser.parse(s)
-print(result)
 

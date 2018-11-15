@@ -12,7 +12,7 @@ tokens = (
     'DIGIT',
     'COLON',
     'ASSIGN',
-    'END',
+    'SCOLON',
     'LPAREN',
     'RPAREN',
     'LBRACKET',
@@ -40,7 +40,7 @@ tokens = (
 t_CHARACTER    = r'[a-zA-z_]'
 t_COLON = r'\:'
 t_ASSIGN = r'\='
-t_END = r'\;'                   #esto lo cambias a semi colon
+t_SCOLON = r'\;'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LBRACKET = r'\{'
@@ -71,8 +71,8 @@ reserved = {
    'circle' : 'CIRCLE',
    'grid'   : 'GRID',
    'line'   : 'LINE',
-   'start'  : 'START',
-   'end'    : 'END'
+   'START'  : 'START',
+   'END'    : 'END'
 }
 
 def t_ID(t):
