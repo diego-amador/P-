@@ -31,7 +31,9 @@ tokens = (
     'SIN',
     'CIRCLE',
     'GRID',
-    'LINE'
+    'LINE',
+    'START',
+    'END'
 )
 
 # Regular expression rules for simple tokens
@@ -69,6 +71,8 @@ reserved = {
    'circle' : 'CIRCLE',
    'grid'   : 'GRID',
    'line'   : 'LINE'
+   'start'  : 'START',
+   'end'    : 'END'
 }
 
 def t_ID(t):

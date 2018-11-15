@@ -4,6 +4,7 @@
 # A parser for the P++ Language.
 # -----------------------------------------------------------------------------
 import ply.yacc as yacc
+import CodeGenerator as generator
 
 #token map
 from lexer import tokens
@@ -44,8 +45,18 @@ def p_function(p):
     """Function : SIN 
                 | CIRCLE 
                 | GRID 
-                | LINE"""
-    p[0] = p[1]     
+                | LINE
+                | START
+                | END"""
+
+    if p[1] == 'START':
+        if os.path.isfile("PPP.pde"):
+            os.remove("PPP.pde")
+    elif p[1] == 'END':
+        generate.run()
+    else:
+    p[0] = p[1]
+    generator.render(p[0])     
  
 def p_location(p):
     """Location : REGARDING Coordinate

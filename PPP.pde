@@ -1,3 +1,7 @@
+//Note: scale function results in error for processing.js.
+//If working in processing GUI, uncomment scale line in draw.
+
+//To make a custom equation, place it in the graph class's equation function
 Graph graph;
 PFont font;
 PVector pos;
@@ -57,7 +61,6 @@ void draw() {
   background(0);
   translate(pos.x, pos.y);
   textSize(20);
-
   graph.displayGrid();
   
   calcWave();
@@ -132,6 +135,7 @@ void calcWave() {
     x+=dx;
   }
 }
+
 void renderWave() {
  noStroke();
  fill(255);
