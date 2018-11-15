@@ -40,7 +40,7 @@ tokens = (
 t_CHARACTER    = r'[a-zA-z_]'
 t_COLON = r'\:'
 t_ASSIGN = r'\='
-t_END = r'\;'
+t_END = r'\;'                   #esto lo cambias a semi colon
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LBRACKET = r'\{'
@@ -70,7 +70,7 @@ reserved = {
    'sin'    : 'SIN',
    'circle' : 'CIRCLE',
    'grid'   : 'GRID',
-   'line'   : 'LINE'
+   'line'   : 'LINE',
    'start'  : 'START',
    'end'    : 'END'
 }

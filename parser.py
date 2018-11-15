@@ -17,7 +17,14 @@ def p_expression_ID(p):
     # if p[1] == 'append'     : p[0] = p[0]
     # elif p[1] == 'rotate'   : p[0] = p[0]
     # else                    : p[0] = p[0]
-    p[0] = p[0]
+    if p[1] == 'ID':
+        if os.path.isfile("PPP.pde"):
+            os.remove("PPP.pde")
+    elif p[1] == 'END':
+        generator.run()
+    else:
+        p[0] = p[1]
+        generator.render(p[0])  
     print (*p)  #OPTIONAL FOR NOW
 
 
@@ -49,15 +56,16 @@ def p_function(p):
                 | LINE
                 | START
                 | END"""
+    p[0] = p[1]
 
-    if p[1] == 'START':
-        if os.path.isfile("PPP.pde"):
-            os.remove("PPP.pde")
-    elif p[1] == 'END':
-        generator.run()
-    else:
-        p[0] = p[1]
-        generator.render(p[0])     
+    # if p[1] == 'START':
+    #     if os.path.isfile("PPP.pde"):
+    #         os.remove("PPP.pde")
+    # elif p[1] == 'END':
+    #     generator.run()
+    # else:
+    #     p[0] = p[1]
+    #     generator.render(p[0])     
  
 def p_location(p):
     """Location : REGARDING Coordinate
@@ -100,7 +108,7 @@ def translateCode(p):
 
 
 
-s = '''A = draw : circle (radius = 5 and color = "blue") @ (1, 5); 
+s = '''A = draw : sin (); 
 '''
 
 result = parser.parse(s)
