@@ -2,13 +2,13 @@ import os
 import subprocess
 
 initialCode = []
-sinewaveCode = []
 variables = {}
-sinewaveCode = ["void renderWave() {"]
+sinewaveCode = ["void renderWave() {}"]
 
 def render(function):
         createInitialCode()
-        if function[3] == 'sin':
+        print(function[3])
+        if function[3] == "sin":
                 renderWave()
     
 def createInitialCode():
@@ -137,12 +137,11 @@ def renderWave():
                     "ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); \n" \
                     "} \n" \
                     "} \n"
-        sinewaveCode.append(swc)
-
-def upload():
+        sinewaveCode[0] = swc
+def run():
     finalCode = initialCode[0]
-
     finalCode += sinewaveCode[0]
+    finalCode += "\n }"
 
     filePath = "PPP.pde"
     ProcessingCode = open(filePath, 'w')

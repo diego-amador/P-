@@ -1,0 +1,518 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CHARACTER
+    DOT
+    LBRACKET
+    OPERATOR
+    RBRACKET
+
+Grammar
+
+Rule 0     S' -> expresion
+Rule 1     expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+Rule 2     expresion -> APPEND ID TO ID SEMIC
+Rule 3     expresion -> ROTATE ID AROUND ID SEMIC
+Rule 4     expresion -> START
+Rule 5     expresion -> END
+Rule 6     ParameterList -> Parameter AND ParameterList
+Rule 7     ParameterList -> Parameter
+Rule 8     ParameterList -> empty
+Rule 9     Parameter -> ID ASSIGN DIGIT
+Rule 10    Parameter -> ID ASSIGN String
+Rule 11    Parameter -> LINE ASSIGN String
+Rule 12    String -> QUOTE ID QUOTE
+Rule 13    Operation -> DRAW
+Rule 14    Function -> SIN
+Rule 15    Function -> CIRCLE
+Rule 16    Function -> GRID
+Rule 17    Function -> LINE
+Rule 18    Location -> REGARDING Coordinate
+Rule 19    Location -> empty
+Rule 20    Coordinate -> ID
+Rule 21    Coordinate -> LPAREN DIGIT COMMA DIGIT RPAREN
+Rule 22    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 6
+APPEND               : 2
+AROUND               : 3
+ASSIGN               : 1 9 10 11
+CHARACTER            : 
+CIRCLE               : 15
+COLON                : 1
+COMMA                : 21
+DIGIT                : 9 21 21
+DOT                  : 
+DRAW                 : 13
+END                  : 1 5
+GRID                 : 16
+ID                   : 1 2 2 3 3 9 10 12 20
+LBRACKET             : 
+LINE                 : 11 17
+LPAREN               : 1 21
+OPERATOR             : 
+QUOTE                : 12 12
+RBRACKET             : 
+REGARDING            : 18
+ROTATE               : 3
+RPAREN               : 1 21
+SEMIC                : 1 2 3
+SIN                  : 14
+START                : 1 4
+TO                   : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+Coordinate           : 18
+Function             : 1
+Location             : 1
+Operation            : 1
+Parameter            : 6 7
+ParameterList        : 1 6
+String               : 10 11
+empty                : 8 19
+expresion            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expresion
+    (1) expresion -> . START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+    (2) expresion -> . APPEND ID TO ID SEMIC
+    (3) expresion -> . ROTATE ID AROUND ID SEMIC
+    (4) expresion -> . START
+    (5) expresion -> . END
+
+    START           shift and go to state 2
+    APPEND          shift and go to state 4
+    ROTATE          shift and go to state 5
+    END             shift and go to state 3
+
+    expresion                      shift and go to state 1
+
+state 1
+
+    (0) S' -> expresion .
+
+
+
+state 2
+
+    (1) expresion -> START . ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+    (4) expresion -> START .
+
+    ID              shift and go to state 6
+    $end            reduce using rule 4 (expresion -> START .)
+
+
+state 3
+
+    (5) expresion -> END .
+
+    $end            reduce using rule 5 (expresion -> END .)
+
+
+state 4
+
+    (2) expresion -> APPEND . ID TO ID SEMIC
+
+    ID              shift and go to state 7
+
+
+state 5
+
+    (3) expresion -> ROTATE . ID AROUND ID SEMIC
+
+    ID              shift and go to state 8
+
+
+state 6
+
+    (1) expresion -> START ID . ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+
+    ASSIGN          shift and go to state 9
+
+
+state 7
+
+    (2) expresion -> APPEND ID . TO ID SEMIC
+
+    TO              shift and go to state 10
+
+
+state 8
+
+    (3) expresion -> ROTATE ID . AROUND ID SEMIC
+
+    AROUND          shift and go to state 11
+
+
+state 9
+
+    (1) expresion -> START ID ASSIGN . Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+    (13) Operation -> . DRAW
+
+    DRAW            shift and go to state 13
+
+    Operation                      shift and go to state 12
+
+state 10
+
+    (2) expresion -> APPEND ID TO . ID SEMIC
+
+    ID              shift and go to state 14
+
+
+state 11
+
+    (3) expresion -> ROTATE ID AROUND . ID SEMIC
+
+    ID              shift and go to state 15
+
+
+state 12
+
+    (1) expresion -> START ID ASSIGN Operation . COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+
+    COLON           shift and go to state 16
+
+
+state 13
+
+    (13) Operation -> DRAW .
+
+    COLON           reduce using rule 13 (Operation -> DRAW .)
+
+
+state 14
+
+    (2) expresion -> APPEND ID TO ID . SEMIC
+
+    SEMIC           shift and go to state 17
+
+
+state 15
+
+    (3) expresion -> ROTATE ID AROUND ID . SEMIC
+
+    SEMIC           shift and go to state 18
+
+
+state 16
+
+    (1) expresion -> START ID ASSIGN Operation COLON . Function LPAREN ParameterList RPAREN Location SEMIC END
+    (14) Function -> . SIN
+    (15) Function -> . CIRCLE
+    (16) Function -> . GRID
+    (17) Function -> . LINE
+
+    SIN             shift and go to state 20
+    CIRCLE          shift and go to state 21
+    GRID            shift and go to state 22
+    LINE            shift and go to state 23
+
+    Function                       shift and go to state 19
+
+state 17
+
+    (2) expresion -> APPEND ID TO ID SEMIC .
+
+    $end            reduce using rule 2 (expresion -> APPEND ID TO ID SEMIC .)
+
+
+state 18
+
+    (3) expresion -> ROTATE ID AROUND ID SEMIC .
+
+    $end            reduce using rule 3 (expresion -> ROTATE ID AROUND ID SEMIC .)
+
+
+state 19
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function . LPAREN ParameterList RPAREN Location SEMIC END
+
+    LPAREN          shift and go to state 24
+
+
+state 20
+
+    (14) Function -> SIN .
+
+    LPAREN          reduce using rule 14 (Function -> SIN .)
+
+
+state 21
+
+    (15) Function -> CIRCLE .
+
+    LPAREN          reduce using rule 15 (Function -> CIRCLE .)
+
+
+state 22
+
+    (16) Function -> GRID .
+
+    LPAREN          reduce using rule 16 (Function -> GRID .)
+
+
+state 23
+
+    (17) Function -> LINE .
+
+    LPAREN          reduce using rule 17 (Function -> LINE .)
+
+
+state 24
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN . ParameterList RPAREN Location SEMIC END
+    (6) ParameterList -> . Parameter AND ParameterList
+    (7) ParameterList -> . Parameter
+    (8) ParameterList -> . empty
+    (9) Parameter -> . ID ASSIGN DIGIT
+    (10) Parameter -> . ID ASSIGN String
+    (11) Parameter -> . LINE ASSIGN String
+    (22) empty -> .
+
+    ID              shift and go to state 25
+    LINE            shift and go to state 29
+    RPAREN          reduce using rule 22 (empty -> .)
+
+    ParameterList                  shift and go to state 26
+    Parameter                      shift and go to state 27
+    empty                          shift and go to state 28
+
+state 25
+
+    (9) Parameter -> ID . ASSIGN DIGIT
+    (10) Parameter -> ID . ASSIGN String
+
+    ASSIGN          shift and go to state 30
+
+
+state 26
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList . RPAREN Location SEMIC END
+
+    RPAREN          shift and go to state 31
+
+
+state 27
+
+    (6) ParameterList -> Parameter . AND ParameterList
+    (7) ParameterList -> Parameter .
+
+    AND             shift and go to state 32
+    RPAREN          reduce using rule 7 (ParameterList -> Parameter .)
+
+
+state 28
+
+    (8) ParameterList -> empty .
+
+    RPAREN          reduce using rule 8 (ParameterList -> empty .)
+
+
+state 29
+
+    (11) Parameter -> LINE . ASSIGN String
+
+    ASSIGN          shift and go to state 33
+
+
+state 30
+
+    (9) Parameter -> ID ASSIGN . DIGIT
+    (10) Parameter -> ID ASSIGN . String
+    (12) String -> . QUOTE ID QUOTE
+
+    DIGIT           shift and go to state 34
+    QUOTE           shift and go to state 36
+
+    String                         shift and go to state 35
+
+state 31
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN . Location SEMIC END
+    (18) Location -> . REGARDING Coordinate
+    (19) Location -> . empty
+    (22) empty -> .
+
+    REGARDING       shift and go to state 38
+    SEMIC           reduce using rule 22 (empty -> .)
+
+    Location                       shift and go to state 37
+    empty                          shift and go to state 39
+
+state 32
+
+    (6) ParameterList -> Parameter AND . ParameterList
+    (6) ParameterList -> . Parameter AND ParameterList
+    (7) ParameterList -> . Parameter
+    (8) ParameterList -> . empty
+    (9) Parameter -> . ID ASSIGN DIGIT
+    (10) Parameter -> . ID ASSIGN String
+    (11) Parameter -> . LINE ASSIGN String
+    (22) empty -> .
+
+    ID              shift and go to state 25
+    LINE            shift and go to state 29
+    RPAREN          reduce using rule 22 (empty -> .)
+
+    Parameter                      shift and go to state 27
+    ParameterList                  shift and go to state 40
+    empty                          shift and go to state 28
+
+state 33
+
+    (11) Parameter -> LINE ASSIGN . String
+    (12) String -> . QUOTE ID QUOTE
+
+    QUOTE           shift and go to state 36
+
+    String                         shift and go to state 41
+
+state 34
+
+    (9) Parameter -> ID ASSIGN DIGIT .
+
+    AND             reduce using rule 9 (Parameter -> ID ASSIGN DIGIT .)
+    RPAREN          reduce using rule 9 (Parameter -> ID ASSIGN DIGIT .)
+
+
+state 35
+
+    (10) Parameter -> ID ASSIGN String .
+
+    AND             reduce using rule 10 (Parameter -> ID ASSIGN String .)
+    RPAREN          reduce using rule 10 (Parameter -> ID ASSIGN String .)
+
+
+state 36
+
+    (12) String -> QUOTE . ID QUOTE
+
+    ID              shift and go to state 42
+
+
+state 37
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location . SEMIC END
+
+    SEMIC           shift and go to state 43
+
+
+state 38
+
+    (18) Location -> REGARDING . Coordinate
+    (20) Coordinate -> . ID
+    (21) Coordinate -> . LPAREN DIGIT COMMA DIGIT RPAREN
+
+    ID              shift and go to state 45
+    LPAREN          shift and go to state 46
+
+    Coordinate                     shift and go to state 44
+
+state 39
+
+    (19) Location -> empty .
+
+    SEMIC           reduce using rule 19 (Location -> empty .)
+
+
+state 40
+
+    (6) ParameterList -> Parameter AND ParameterList .
+
+    RPAREN          reduce using rule 6 (ParameterList -> Parameter AND ParameterList .)
+
+
+state 41
+
+    (11) Parameter -> LINE ASSIGN String .
+
+    AND             reduce using rule 11 (Parameter -> LINE ASSIGN String .)
+    RPAREN          reduce using rule 11 (Parameter -> LINE ASSIGN String .)
+
+
+state 42
+
+    (12) String -> QUOTE ID . QUOTE
+
+    QUOTE           shift and go to state 47
+
+
+state 43
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC . END
+
+    END             shift and go to state 48
+
+
+state 44
+
+    (18) Location -> REGARDING Coordinate .
+
+    SEMIC           reduce using rule 18 (Location -> REGARDING Coordinate .)
+
+
+state 45
+
+    (20) Coordinate -> ID .
+
+    SEMIC           reduce using rule 20 (Coordinate -> ID .)
+
+
+state 46
+
+    (21) Coordinate -> LPAREN . DIGIT COMMA DIGIT RPAREN
+
+    DIGIT           shift and go to state 49
+
+
+state 47
+
+    (12) String -> QUOTE ID QUOTE .
+
+    AND             reduce using rule 12 (String -> QUOTE ID QUOTE .)
+    RPAREN          reduce using rule 12 (String -> QUOTE ID QUOTE .)
+
+
+state 48
+
+    (1) expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END .
+
+    $end            reduce using rule 1 (expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END .)
+
+
+state 49
+
+    (21) Coordinate -> LPAREN DIGIT . COMMA DIGIT RPAREN
+
+    COMMA           shift and go to state 50
+
+
+state 50
+
+    (21) Coordinate -> LPAREN DIGIT COMMA . DIGIT RPAREN
+
+    DIGIT           shift and go to state 51
+
+
+state 51
+
+    (21) Coordinate -> LPAREN DIGIT COMMA DIGIT . RPAREN
+
+    RPAREN          shift and go to state 52
+
+
+state 52
+
+    (21) Coordinate -> LPAREN DIGIT COMMA DIGIT RPAREN .
+
+    SEMIC           reduce using rule 21 (Coordinate -> LPAREN DIGIT COMMA DIGIT RPAREN .)
+

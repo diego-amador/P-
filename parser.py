@@ -11,9 +11,9 @@ import os
 from lexer import tokens
 
 def p_expression_ID(p):
-    """expresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SCOLON END
-                 | APPEND ID TO ID SCOLON
-                 | ROTATE ID AROUND ID SCOLON
+    """expresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+                 | APPEND ID TO ID SEMIC
+                 | ROTATE ID AROUND ID SEMIC
                  | START
                  | END"""
 
@@ -24,7 +24,7 @@ def p_expression_ID(p):
     generator.render(p[0])
 
     if p[12] == 'END':
-        generator.upload()
+        generator.run()
         # generator.cleanUpload()
         print("upload complete")
 
