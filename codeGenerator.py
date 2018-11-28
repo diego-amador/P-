@@ -19,8 +19,6 @@ def createInitialCode():
                     "boolean locked = false; \n" \
                     "float xOffset = 0; \n" \
                     "float yOffset = 0; \n" \
-                    "float ySineOffset = 550; \n" \
-                    "float xSineOffset = 990; \n" \
                     "float scale = 1; \n" \
                     "int xspacing = 16;   // How far apart should each horizontal location be spaced \n" \
                     "int w;              // Width of entire wave \n" \
@@ -136,7 +134,7 @@ def renderWave():
                     "fill(255); \n" \
                     "// A simple way to draw the wave with an ellipse at each location \n" \
                     "for (int x = 0; x < yvalues.length; x++) { \n" \
-                    "ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); \n" \
+                    "ellipse(x*xspacing-width/2, height/2+yvalues[x] - height/2, 16, 16); \n" \
                     "} " \
                     
         sinewaveCode[0] = swc

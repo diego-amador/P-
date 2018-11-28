@@ -4,8 +4,6 @@ PVector pos;
 boolean locked = false; 
 float xOffset = 0; 
 float yOffset = 0; 
-float ySineOffset = 550; 
-float xSineOffset = 990; 
 float scale = 1; 
 int xspacing = 16;   // How far apart should each horizontal location be spaced 
 int w;              // Width of entire wave 
@@ -116,6 +114,6 @@ noStroke();
 fill(255); 
 // A simple way to draw the wave with an ellipse at each location 
 for (int x = 0; x < yvalues.length; x++) { 
-ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); 
+ellipse(x*xspacing-width/2, height/2+yvalues[x] - height/2, 16, 16); 
 } 
  }

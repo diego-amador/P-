@@ -1,3 +1,3 @@
 START
-A = draw: sin ();
+A = dr sin ();
 END
