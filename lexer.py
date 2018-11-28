@@ -12,7 +12,7 @@ tokens = (
     'DIGIT',
     'COLON',
     'ASSIGN',
-    'END',
+    'SEMIC',
     'LPAREN',
     'RPAREN',
     'LBRACKET',
@@ -31,14 +31,16 @@ tokens = (
     'SIN',
     'CIRCLE',
     'GRID',
-    'LINE'
+    'LINE',
+    'START',
+    'END'
 )
 
 # Regular expression rules for simple tokens
 t_CHARACTER    = r'[a-zA-z_]'
 t_COLON = r'\:'
 t_ASSIGN = r'\='
-t_END = r'\;'
+t_SEMIC = r'\;'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LBRACKET = r'\{'
@@ -68,7 +70,9 @@ reserved = {
    'sin'    : 'SIN',
    'circle' : 'CIRCLE',
    'grid'   : 'GRID',
-   'line'   : 'LINE'
+   'line'   : 'LINE',
+   'START'  : 'START',
+   'END'    : 'END'
 }
 
 def t_ID(t):
