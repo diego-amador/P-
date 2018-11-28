@@ -1,8 +1,17 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Eduardo\\Anaconda3\\python.exe",
 
     "python.linting.pylintArgs": [
         "----extension-pkg-whitelist=1xml"
         ]
+=======
+    "python.pythonPath": "C:\\Users\\diego\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+
+    "python.linting.pylintArgs": [
+        "----extension-pkg-whitelist=1xml"
+        ],
+        "terminal.integrated.drawBoldTextInBrightColors": false
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
 }
 

@@ -119,5 +119,3 @@ for (int x = 0; x < yvalues.length; x++) {
 ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); 
 } 
 } 
-
- }
