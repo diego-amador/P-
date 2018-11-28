@@ -41,11 +41,8 @@ def p_parameter(p):
     """Parameter : ID ASSIGN DIGIT 
                  | ID ASSIGN String
                  | LINE ASSIGN String """
-<<<<<<< HEAD
-=======
     generator.updateValue(p[1],p[3])    #Value is updated in the code generator
                     
->>>>>>> 4f6635417c516e188e57997742ea37a79c781303
     p[0] = p[3]     #The value of interest is in index 3
 
 def p_string(p) :
@@ -107,11 +104,7 @@ def translateCode(p):
 
 
 s = '''START
-<<<<<<< HEAD
-A = draw : sin ();
-=======
 A = draw : sin(Amplitude=70 and Frequency=75);
->>>>>>> 4f6635417c516e188e57997742ea37a79c781303
 END
 '''
 
