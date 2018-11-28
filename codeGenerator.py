@@ -12,10 +12,13 @@ variables ["Frequency"]=500
 
 def render(function):
         createInitialCode()
-        print(function[3])
-        if function[3] == "sin":
-                renderWave()
-    
+
+        if(len(function) > 3):
+                print(function[3])
+                if function[3] == "sin":
+                        renderWave()
+        else: print("Grid")
+
 def updateValue(property,propertyValue):
         if property=="Amplitude":
                  print('the atribute :',property,' has a value of ',propertyValue)
@@ -151,7 +154,7 @@ def renderWave():
                     "// A simple way to draw the wave with an ellipse at each location \n" \
                     "for (int x = 0; x < yvalues.length; x++) { \n" \
                     "ellipse(x*xspacing-width/2, height/2+yvalues[x] - height/2, 16, 16); \n" \
-                    "} " \
+                    "} } " \
                     
         sinewaveCode[0] = swc
 
@@ -162,7 +165,7 @@ def run():
     finalCode = initialCode[0]
     finalCode += sinewaveCode[0]
     #finalCode += circleCode[0]    
-    finalCode += "\n } "
+    #finalCode += "\n } "
 
     filePath = "PPP/PPP.pde"
     ProcessingCode = open(filePath, 'w')
