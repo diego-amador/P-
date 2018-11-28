@@ -14,14 +14,23 @@ def p_expression_ID(p):
     """expresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
                  | APPEND ID TO ID SEMIC
                  | ROTATE ID AROUND ID SEMIC
-                 | START
+                 | START END
                  | END"""
 
     if p[1] == 'START':
         if os.path.isfile("PPP.pde"):
             os.remove("PPP.pde")
-    p[0] = (p[2], p[3], p[4], p[6], p[8], p[10])
-    generator.render(p[0])
+    if p[2] == 'END':
+        p[0] = 'END'
+        generator.render(p[0])
+        generator.run()
+        print("upload complete")
+        return
+
+    else: 
+        p[0] = (p[2], p[3], p[4], p[6], p[8], p[10])
+        generator.render(p[0])
+    
 
     if p[12] == 'END':
         generator.run()
@@ -107,6 +116,7 @@ s = '''START
 A = draw : sin(Amplitude=70 and Frequency=75);
 END
 '''
+s = '''START END'''
 
 result = parser.parse(s)
 
