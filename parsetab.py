@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND APPEND AROUND ASSIGN CHARACTER CIRCLE COLON COMMA DIGIT DOT DRAW END GRID ID LBRACKET LINE LPAREN OPERATOR QUOTE RBRACKET REGARDING ROTATE RPAREN SEMIC SIN START TOexpresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END\n                 | APPEND ID TO ID SEMIC\n                 | ROTATE ID AROUND ID SEMIC\n                 | START\n                 | ENDParameterList : Parameter AND ParameterList \n                     | Parameter \n                     | emptyParameter : ID ASSIGN DIGIT \n                 | ID ASSIGN String\n                 | LINE ASSIGN String String : QUOTE ID QUOTEOperation : DRAWFunction : SIN \n                | CIRCLE \n                | GRID \n                | LINELocation : REGARDING Coordinate\n                | emptyCoordinate : ID \n                  | LPAREN DIGIT COMMA DIGIT RPARENempty :'
+_lr_signature = 'AND APPEND AROUND ASSIGN CHARACTER CIRCLE COLON COMMA DIGIT DOT DRAW END GRID ID LBRACKET LINE LPAREN OPERATOR QUOTE RBRACKET REGARDING ROTATE RPAREN SEMIC SIN START TOexpresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END\n                 | APPEND ID TO ID SEMIC\n                 | ROTATE ID AROUND ID SEMIC\n                 | START END\n                 | ENDParameterList : Parameter AND ParameterList \n                     | Parameter \n                     | emptyParameter : ID ASSIGN DIGIT \n                 | ID ASSIGN String\n                 | LINE ASSIGN String String : QUOTE ID QUOTEOperation : DRAWFunction : SIN \n                | CIRCLE \n                | GRID \n                | LINELocation : REGARDING Coordinate\n                | emptyCoordinate : ID \n                  | LPAREN DIGIT COMMA DIGIT RPARENempty :'
     
-_lr_action_items = {'START':([0,],[2,]),'APPEND':([0,],[4,]),'ROTATE':([0,],[5,]),'END':([0,43,],[3,48,]),'$end':([1,2,3,17,18,48,],[0,-4,-5,-2,-3,-1,]),'ID':([2,4,5,10,11,24,32,36,38,],[6,7,8,14,15,25,25,42,45,]),'ASSIGN':([6,25,29,],[9,30,33,]),'TO':([7,],[10,]),'AROUND':([8,],[11,]),'DRAW':([9,],[13,]),'COLON':([12,13,],[16,-13,]),'SEMIC':([14,15,31,37,39,44,45,52,],[17,18,-22,43,-19,-18,-20,-21,]),'SIN':([16,],[20,]),'CIRCLE':([16,],[21,]),'GRID':([16,],[22,]),'LINE':([16,24,32,],[23,29,29,]),'LPAREN':([19,20,21,22,23,38,],[24,-14,-15,-16,-17,46,]),'RPAREN':([24,26,27,28,32,34,35,40,41,47,51,],[-22,31,-7,-8,-22,-9,-10,-6,-11,-12,52,]),'AND':([27,34,35,41,47,],[32,-9,-10,-11,-12,]),'DIGIT':([30,46,50,],[34,49,51,]),'QUOTE':([30,33,42,],[36,36,47,]),'REGARDING':([31,],[38,]),'COMMA':([49,],[50,]),}
+_lr_action_items = {'START':([0,],[2,]),'APPEND':([0,],[4,]),'ROTATE':([0,],[5,]),'END':([0,2,44,],[3,7,49,]),'$end':([1,3,7,18,19,49,],[0,-5,-4,-2,-3,-1,]),'ID':([2,4,5,11,12,25,33,37,39,],[6,8,9,15,16,26,26,43,46,]),'ASSIGN':([6,26,30,],[10,31,34,]),'TO':([8,],[11,]),'AROUND':([9,],[12,]),'DRAW':([10,],[14,]),'COLON':([13,14,],[17,-13,]),'SEMIC':([15,16,32,38,40,45,46,53,],[18,19,-22,44,-19,-18,-20,-21,]),'SIN':([17,],[21,]),'CIRCLE':([17,],[22,]),'GRID':([17,],[23,]),'LINE':([17,25,33,],[24,30,30,]),'LPAREN':([20,21,22,23,24,39,],[25,-14,-15,-16,-17,47,]),'RPAREN':([25,27,28,29,33,35,36,41,42,48,52,],[-22,32,-7,-8,-22,-9,-10,-6,-11,-12,53,]),'AND':([28,35,36,42,48,],[33,-9,-10,-11,-12,]),'DIGIT':([31,47,51,],[35,50,52,]),'QUOTE':([31,34,43,],[37,37,48,]),'REGARDING':([32,],[39,]),'COMMA':([50,],[51,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expresion':([0,],[1,]),'Operation':([9,],[12,]),'Function':([16,],[19,]),'ParameterList':([24,32,],[26,40,]),'Parameter':([24,32,],[27,27,]),'empty':([24,31,32,],[28,39,28,]),'String':([30,33,],[35,41,]),'Location':([31,],[37,]),'Coordinate':([38,],[44,]),}
+_lr_goto_items = {'expresion':([0,],[1,]),'Operation':([10,],[13,]),'Function':([17,],[20,]),'ParameterList':([25,33,],[27,41,]),'Parameter':([25,33,],[28,28,]),'empty':([25,32,33,],[29,40,29,]),'String':([31,34,],[36,42,]),'Location':([32,],[38,]),'Coordinate':([39,],[45,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,23 +30,23 @@ _lr_productions = [
   ('expresion -> START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END','expresion',12,'p_expression_ID','parser.py',14),
   ('expresion -> APPEND ID TO ID SEMIC','expresion',5,'p_expression_ID','parser.py',15),
   ('expresion -> ROTATE ID AROUND ID SEMIC','expresion',5,'p_expression_ID','parser.py',16),
-  ('expresion -> START','expresion',1,'p_expression_ID','parser.py',17),
+  ('expresion -> START END','expresion',2,'p_expression_ID','parser.py',17),
   ('expresion -> END','expresion',1,'p_expression_ID','parser.py',18),
-  ('ParameterList -> Parameter AND ParameterList','ParameterList',3,'p_param_list','parser.py',35),
-  ('ParameterList -> Parameter','ParameterList',1,'p_param_list','parser.py',36),
-  ('ParameterList -> empty','ParameterList',1,'p_param_list','parser.py',37),
-  ('Parameter -> ID ASSIGN DIGIT','Parameter',3,'p_parameter','parser.py',42),
-  ('Parameter -> ID ASSIGN String','Parameter',3,'p_parameter','parser.py',43),
-  ('Parameter -> LINE ASSIGN String','Parameter',3,'p_parameter','parser.py',44),
-  ('String -> QUOTE ID QUOTE','String',3,'p_string','parser.py',48),
-  ('Operation -> DRAW','Operation',1,'p_operation','parser.py',52),
-  ('Function -> SIN','Function',1,'p_function','parser.py',56),
-  ('Function -> CIRCLE','Function',1,'p_function','parser.py',57),
-  ('Function -> GRID','Function',1,'p_function','parser.py',58),
-  ('Function -> LINE','Function',1,'p_function','parser.py',59),
-  ('Location -> REGARDING Coordinate','Location',2,'p_location','parser.py',64),
-  ('Location -> empty','Location',1,'p_location','parser.py',65),
-  ('Coordinate -> ID','Coordinate',1,'p_coordinate','parser.py',70),
-  ('Coordinate -> LPAREN DIGIT COMMA DIGIT RPAREN','Coordinate',5,'p_coordinate','parser.py',71),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',77),
+  ('ParameterList -> Parameter AND ParameterList','ParameterList',3,'p_param_list','parser.py',43),
+  ('ParameterList -> Parameter','ParameterList',1,'p_param_list','parser.py',44),
+  ('ParameterList -> empty','ParameterList',1,'p_param_list','parser.py',45),
+  ('Parameter -> ID ASSIGN DIGIT','Parameter',3,'p_parameter','parser.py',50),
+  ('Parameter -> ID ASSIGN String','Parameter',3,'p_parameter','parser.py',51),
+  ('Parameter -> LINE ASSIGN String','Parameter',3,'p_parameter','parser.py',52),
+  ('String -> QUOTE ID QUOTE','String',3,'p_string','parser.py',58),
+  ('Operation -> DRAW','Operation',1,'p_operation','parser.py',62),
+  ('Function -> SIN','Function',1,'p_function','parser.py',66),
+  ('Function -> CIRCLE','Function',1,'p_function','parser.py',67),
+  ('Function -> GRID','Function',1,'p_function','parser.py',68),
+  ('Function -> LINE','Function',1,'p_function','parser.py',69),
+  ('Location -> REGARDING Coordinate','Location',2,'p_location','parser.py',74),
+  ('Location -> empty','Location',1,'p_location','parser.py',75),
+  ('Coordinate -> ID','Coordinate',1,'p_coordinate','parser.py',80),
+  ('Coordinate -> LPAREN DIGIT COMMA DIGIT RPAREN','Coordinate',5,'p_coordinate','parser.py',81),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',87),
 ]

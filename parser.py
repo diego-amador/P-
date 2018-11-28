@@ -116,7 +116,9 @@ s = '''START
 
 END
 '''
-s = '''START END'''
+s = '''START
+A = draw : sin(Amplitude=10 and Frequency=75);
+ END'''
 
 result = parser.parse(s)
 
