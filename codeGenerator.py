@@ -5,14 +5,27 @@ import os
 initialCode = []
 variables = {}
 sinewaveCode = ["void renderWave() {}"]
+circleCode = ["void renderCircle() {}"]
+variables["Amplitude"]= 50
+variables ["Frequency"]=500
+
 
 def render(function):
         createInitialCode()
         print(function[3])
         if function[3] == "sin":
                 renderWave()
+
+def updateValue(property,propertyValue):
+        if property=="Amplitude":
+                variables[property]=propertyValue*5
+        if property=="Frequency":
+                variables[property]=propertyValue*10
+
+        print('the atribute :',property,' has a value of ',variables[property])
     
 def createInitialCode():
+        
     defaultCode =   "Graph graph; \n" \
                     "PFont font; \n" \
                     "PVector pos; \n" \
@@ -23,8 +36,8 @@ def createInitialCode():
                     "int xspacing = 16;   // How far apart should each horizontal location be spaced \n" \
                     "int w;              // Width of entire wave \n" \
                     "float theta = 0.0;  // Start angle at 0 \n" \
-                    "float amplitude = 75.0;  // Height of wave \n" \
-                    "float period = 500.0;  // How many pixels before the wave repeats \n" \
+                    "float amplitude = "+str(variables["Amplitude"])+ ";  // Height of wave \n" \
+                    "float period = "+str(variables["Frequency"])+ ";  // How many pixels before the wave repeats \n" \
                     "float dx;  // Value for incrementing X, a function of period and xspacing \n" \
                     "float[] yvalues;  // Using an array to store height values for the wave \n" \
                     "void setup() { \n" \
@@ -64,6 +77,7 @@ def createInitialCode():
                     "graph.displayGrid(); \n" \
                     "calcWave(); \n" \
                     "renderWave(); \n" \
+                    "//renderCircle(); \n" \
                     "} \n" \
                     "class Graph { \n" \
                     "ArrayList<PVector> points = new ArrayList<PVector>(); \n" \
@@ -124,7 +138,7 @@ def createInitialCode():
                     "    x+=dx; \n" \
                     "} \n" \
                     "} \n" 
-
+   
     initialCode.append(defaultCode)
 
 def renderWave():
@@ -138,10 +152,15 @@ def renderWave():
                     "} " \
                     
         sinewaveCode[0] = swc
+
+
+
+        
 def run():
     finalCode = initialCode[0]
     finalCode += sinewaveCode[0]
-    finalCode += "\n }"
+    #finalCode += circleCode[0]    
+    finalCode += "\n } "
 
     filePath = "PPP/PPP.pde"
     ProcessingCode = open(filePath, 'w')

@@ -8,8 +8,8 @@ float scale = 1;
 int xspacing = 16;   // How far apart should each horizontal location be spaced 
 int w;              // Width of entire wave 
 float theta = 0.0;  // Start angle at 0 
-float amplitude = 75.0;  // Height of wave 
-float period = 500.0;  // How many pixels before the wave repeats 
+float amplitude = 350;  // Height of wave 
+float period = 750;  // How many pixels before the wave repeats 
 float dx;  // Value for incrementing X, a function of period and xspacing 
 float[] yvalues;  // Using an array to store height values for the wave 
 void setup() { 
@@ -49,6 +49,7 @@ textSize(20);
 graph.displayGrid(); 
 calcWave(); 
 renderWave(); 
+//renderCircle(); 
 } 
 class Graph { 
 ArrayList<PVector> points = new ArrayList<PVector>(); 
@@ -116,4 +117,4 @@ fill(255);
 for (int x = 0; x < yvalues.length; x++) { 
 ellipse(x*xspacing-width/2, height/2+yvalues[x] - height/2, 16, 16); 
 } 
- }
+ } 
