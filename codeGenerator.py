@@ -1,20 +1,32 @@
+<<<<<<< HEAD
+import os
+import subprocess
+=======
 
 import subprocess
 import os
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
 
 initialCode = []
 variables = {}
 sinewaveCode = ["void renderWave() {}"]
+<<<<<<< HEAD
+=======
 circleCode = ["void renderCircle() {}"]
 variables["Amplitude"]= 50
 variables ["Frequency"]=500
 
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
 
 def render(function):
         createInitialCode()
         print(function[3])
         if function[3] == "sin":
                 renderWave()
+<<<<<<< HEAD
+    
+def createInitialCode():
+=======
 
 def updateValue(property,propertyValue):
         if property=="Amplitude":
@@ -28,18 +40,29 @@ def updateValue(property,propertyValue):
     
 def createInitialCode():
         
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
     defaultCode =   "Graph graph; \n" \
                     "PFont font; \n" \
                     "PVector pos; \n" \
                     "boolean locked = false; \n" \
                     "float xOffset = 0; \n" \
                     "float yOffset = 0; \n" \
+<<<<<<< HEAD
+                    "float ySineOffset = 550; \n" \
+                    "float xSineOffset = 990; \n" \
+=======
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
                     "float scale = 1; \n" \
                     "int xspacing = 16;   // How far apart should each horizontal location be spaced \n" \
                     "int w;              // Width of entire wave \n" \
                     "float theta = 0.0;  // Start angle at 0 \n" \
+<<<<<<< HEAD
+                    "float amplitude = 75.0;  // Height of wave \n" \
+                    "float period = 500.0;  // How many pixels before the wave repeats \n" \
+=======
                     "float amplitude = "+str(variables["Amplitude"])+ ";  // Height of wave \n" \
                     "float period = "+str(variables["Frequency"])+ ";  // How many pixels before the wave repeats \n" \
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
                     "float dx;  // Value for incrementing X, a function of period and xspacing \n" \
                     "float[] yvalues;  // Using an array to store height values for the wave \n" \
                     "void setup() { \n" \
@@ -79,7 +102,10 @@ def createInitialCode():
                     "graph.displayGrid(); \n" \
                     "calcWave(); \n" \
                     "renderWave(); \n" \
+<<<<<<< HEAD
+=======
                     "//renderCircle(); \n" \
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
                     "} \n" \
                     "class Graph { \n" \
                     "ArrayList<PVector> points = new ArrayList<PVector>(); \n" \
@@ -140,16 +166,41 @@ def createInitialCode():
                     "    x+=dx; \n" \
                     "} \n" \
                     "} \n" 
+<<<<<<< HEAD
+
+    initialCode.append(defaultCode)
+
+def renderWave():
+=======
    
     initialCode.append(defaultCode)
 
 def renderWave():
        
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
         swc = "void renderWave() { \n" \
                     "noStroke(); \n" \
                     "fill(255); \n" \
                     "// A simple way to draw the wave with an ellipse at each location \n" \
                     "for (int x = 0; x < yvalues.length; x++) { \n" \
+<<<<<<< HEAD
+                    "ellipse(x*xspacing-xSineOffset, height/2+yvalues[x] - ySineOffset, 16, 16); \n" \
+                    "} \n" \
+                    "} \n"
+        sinewaveCode[0] = swc
+def run():
+    finalCode = initialCode[0]
+    finalCode += sinewaveCode[0]
+
+    filePath = "PPP.pde"
+    ProcessingCode = open(filePath, 'w')
+    ProcessingCode.write(finalCode)
+    ProcessingCode.close()
+
+
+def cleanUpload():
+        os.system( "upload clean")
+=======
                     "ellipse(x*xspacing-width/2, height/2+yvalues[x] - height/2, 16, 16); \n" \
                     "} " \
                     
@@ -174,3 +225,4 @@ def run():
 def cleanUpload():
         os.system( "upload clean")
         
+>>>>>>> 4f6635417c516e188e57997742ea37a79c781303
