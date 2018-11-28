@@ -104,7 +104,7 @@ def translateCode(p):
 
 
 s = '''START
-A = draw : sin(Amplitude=70 and Frequency=75);
+A = draw : sin(Amplitude=10 and Frequency=75);
 END
 '''
 

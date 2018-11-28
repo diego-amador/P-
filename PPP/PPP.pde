@@ -8,7 +8,7 @@ float scale = 1;
 int xspacing = 16;   // How far apart should each horizontal location be spaced 
 int w;              // Width of entire wave 
 float theta = 0.0;  // Start angle at 0 
-float amplitude = 350;  // Height of wave 
+float amplitude = 100;  // Height of wave 
 float period = 750;  // How many pixels before the wave repeats 
 float dx;  // Value for incrementing X, a function of period and xspacing 
 float[] yvalues;  // Using an array to store height values for the wave 
@@ -43,7 +43,7 @@ void mouseReleased() {
 locked = false; 
 } 
 void draw() { 
-background(0); 
+ background(0); 
 translate(pos.x, pos.y); 
 textSize(20); 
 graph.displayGrid(); 

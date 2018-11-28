@@ -18,11 +18,13 @@ def render(function):
 
 def updateValue(property,propertyValue):
         if property=="Amplitude":
-                variables[property]=propertyValue*5
+                 print('the atribute :',property,' has a value of ',propertyValue)
+        variables[property]=propertyValue*5
         if property=="Frequency":
-                variables[property]=propertyValue*10
+                 print('the atribute :',property,' has a value of ',propertyValue)
+        variables[property]=propertyValue*10
 
-        print('the atribute :',property,' has a value of ',variables[property])
+       
     
 def createInitialCode():
         
@@ -70,7 +72,7 @@ def createInitialCode():
                     "void mouseReleased() { \n" \
                     "locked = false; \n" \
                     "} \n" \
-                    "void draw() { \n" \
+                    "void draw() { \n " \
                     "background(0); \n" \
                     "translate(pos.x, pos.y); \n" \
                     "textSize(20); \n" \
