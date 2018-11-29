@@ -10,10 +10,12 @@ import os
 #token map
 from lexer import tokens
 
+
+
 def p_expression_ID(p):
-    """expresion : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
+    """expression : START ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN Location SEMIC END
                  | APPEND ID TO ID SEMIC
-                 | ROTATE ID AROUND ID SEMIC
+                 | START ROTATE ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN AROUND ID ASSIGN Operation COLON Function LPAREN ParameterList RPAREN SEMIC END
                  | START END
                  | END"""
 
@@ -21,23 +23,24 @@ def p_expression_ID(p):
         if os.path.isfile("PPP.pde"):
             os.remove("PPP.pde")
     if p[2] == 'END':
-        p[0] = 'END'
+        p[0] = "grid"
         generator.render(p[0])
         generator.run()
-        print("upload complete")
         return
 
-    else: 
+    if p[2] == "rotate":
+        p[0] = (p[2], p[9], p[18])
+        generator.render(p[0])
+        generator.run()
+        return
+
+    if p[6] == "sin": 
         p[0] = (p[2], p[3], p[4], p[6], p[8], p[10])
         generator.render(p[0])
-    
-
-    if p[12] == 'END':
         generator.run()
-        # generator.cleanUpload()
-        print("upload complete")
-
-
+        return
+    
+       
 
 def p_param_list(p):
     """ParameterList : Parameter AND ParameterList 
@@ -116,7 +119,8 @@ s = '''START
 A = draw : sin(Amplitude=70 and Frequency=75);
 END
 '''
-s = '''START END'''
+s = '''START rotate A = draw : circle(Radius = 18) around B = draw : circle(Radius = 20); END'''
+#s = '''START END'''
 
 result = parser.parse(s)
 

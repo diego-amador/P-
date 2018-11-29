@@ -6,26 +6,47 @@ initialCode = []
 variables = {}
 sinewaveCode = ["void renderWave() {}"]
 circleCode = ["void renderCircle() {}"]
+cardioidCode = ["void renderCardiod(){}"]
 variables["Amplitude"]= 50
 variables ["Frequency"]=500
+variables["Radius"] = 20
+variables["Radius2"] = 20
+
+radiusCheck = 1
 
 
 def render(function):
         createInitialCode()
-
         if(len(function) > 3):
-                print(function[3])
+                
                 if function[3] == "sin":
+                        print(function[3])
                         renderWave()
-        else: print("Grid")
+                        
+        if function[0] == "rotate":
+                print("cardiod")
+                renderCardioid()
+
+        if function[0] == "g": print("Grid")
 
 def updateValue(property,propertyValue):
+        global radiusCheck
         if property=="Amplitude":
                 variables[property]=propertyValue*5
+                print('the attribute :',property,' has a value of ',variables[property])
         if property=="Frequency":
                 variables[property]=propertyValue*10
+                print('the attribute :',property,' has a value of ',variables[property])
+        if property == "Radius":
+                if radiusCheck == 1:
+                        variables[property] = propertyValue
+                        radiusCheck = -1
+                        print('the attribute :',property,' has a value of ',variables[property])
+                else: 
+                        variables["Radius2"] = propertyValue
+                        print('the attribute :',property,' has a value of ',variables["Radius2"])
 
-        print('the atribute :',property,' has a value of ',variables[property])
+        
     
 def createInitialCode():
         
@@ -43,6 +64,30 @@ def createInitialCode():
                     "float period = "+str(variables["Frequency"])+ ";  // How many pixels before the wave repeats \n" \
                     "float dx;  // Value for incrementing X, a function of period and xspacing \n" \
                     "float[] yvalues;  // Using an array to store height values for the wave \n" \
+                    "//Credit to TimelyToga for the base code for Cardiods\n" \
+                        "//https://github.com/TimelyToga/DrawingCardioidsWithProcessing/blob/master/cardioids.pde\n" \
+                        "class Point {\n" \
+                        "float x;\n" \
+                        "float y;\n" \
+                        "public Point(float x, float y){\n" \
+                        "this.x = x;\n" \
+                        "this.y = y;\n" \
+                        "  }\n" \
+                        "}\n" \
+                        "float circleX = 0;\n" \
+                        "float circleY = 0; \n" \
+                        "int xSize = 0;\n" \
+                        "int ySize = 0;\n" \
+                        "int xCenter = xSize / 2;\n" \
+                        "int yCenter = ySize / 2;\n" \
+                        "ArrayList<Point> points;\n" \
+                        "float size = 10;\n" \
+                        "float radiusMultiplier1 = "+str(variables["Radius"])+ ";\n" \
+                        "float radiusMultiplier2 = "+str(variables["Radius2"])+ ";\n" \
+                        "float sizeCircle1 = size * radiusMultiplier1; //default\n" \
+                        "float sizeCircle2 = size * radiusMultiplier2; //default\n" \
+                        "float gridSize = size / 2; // radius of our circles\n" \
+                        "float t = 0;\n" \
                     "void setup() { \n" \
                     "fullScreen(); \n" \
                     "font = createFont(\"Consolas\", 50); \n" \
@@ -58,6 +103,9 @@ def createInitialCode():
                     "dx = (TWO_PI / period) * xspacing; \n" \
                     "yvalues = new float[w/xspacing]; \n" \
                     "//END_SINEWAVE \n" \
+                        "circleX = float(xSize / 2);\n" \
+                        "circleY = float(ySize / 2);\n" \
+                        "points = new ArrayList();\n" \
                     "} \n" \
                     "void mousePressed() { \n" \
                     "locked = true; \n" \
@@ -81,6 +129,7 @@ def createInitialCode():
                     "calcWave(); \n" \
                     "renderWave(); \n" \
                     "//renderCircle(); \n" \
+                    "renderCardiod();\n" \
                     "} \n" \
                     "class Graph { \n" \
                     "ArrayList<PVector> points = new ArrayList<PVector>(); \n" \
@@ -156,12 +205,78 @@ def renderWave():
                     
         sinewaveCode[0] = swc
 
+def renderCardioid():
+
+        cc =    "void renderCardiod(){\n" \
+                "//Credit to TimelyToga for the base code for Cardiods\n" \
+                "//https://github.com/TimelyToga/DrawingCardioidsWithProcessing/blob/master/cardioids.pde\n" \
+                "// Draw axes\n" \
+                "stroke(190);\n" \
+                "strokeWeight(2);\n" \
+                "line(0, ySize / 2, xSize, ySize / 2);\n" \
+                "line(xSize / 2, 0, xSize / 2, ySize);\n" \
+                "int curXLine = 1;\n" \
+                "while(curXLine * gridSize <= xSize){\n" \
+                "float xDelta = curXLine * gridSize;\n" \
+                "line(xCenter + xDelta, 0, xCenter + xDelta, ySize);\n" \
+                "line(xCenter - xDelta, 0, xCenter - xDelta, ySize);\n" \
+                "curXLine++;\n" \
+                "}\n" \
+                "int yL = 1;\n" \
+                "while(yL * gridSize <= ySize){\n" \
+                "float yD = yL * gridSize;\n" \
+                "line(0, yCenter + yD, xSize, yCenter + yD);\n" \
+                "line(0, yCenter - yD, xSize, yCenter - yD);\n" \
+                "yL++;\n" \
+                "}\n" \
+                "// Calculate cur position of rotating circle\n" \
+                "float xOffset = sizeCircle1 * cos(t);\n" \
+                "float yOffset = sizeCircle1 * sin(t);\n" \
+                "float x = circleX + xOffset;\n" \
+                "float y = circleY + yOffset;\n" \
+                "// Draw center circle\n" \
+                "stroke(18, 185, 204);\n" \
+                "strokeWeight(3);\n" \
+                "noFill();\n" \
+                "ellipse(circleX, circleY, sizeCircle1 - 3, sizeCircle1 - 3);\n" \
+                "// Draw rotating circle\n" \
+                "noStroke();\n" \
+                "fill(232, 152, 118);\n" \
+                "ellipse(x, y, sizeCircle2, sizeCircle2);\n" \
+                "// Add a new drawing point\n" \
+                "float dx = x - (sizeCircle2 / 2.0) * cos(2*t);\n" \
+                "float dy = y - (sizeCircle2 / 2.0) * sin(2*t);\n" \
+                "points.add(new Point(dx, dy));\n" \
+                "//Draw rotation line\n" \
+                "strokeWeight(3);\n" \
+                "stroke(252, 222, 168);\n" \
+                "line(x, y, dx, dy);\n" \
+                "// Draw our cardioid\n" \
+                "stroke(214, 79, 21);\n" \
+                "strokeWeight(3);\n" \
+                "noFill();\n" \
+                "beginShape();\n" \
+                "for(Point p: points){\n" \
+                "curveVertex(p.x, p.y);\n" \
+                "}\n" \
+                "endShape();\n" \
+                "// Timestep\n" \
+                "t += 0.03;\n" \
+                "if(t >= 2 * 3.14159) {\n" \
+                "t = 0;\n" \
+                "// If we have rotated once, stop animating\n" \
+                "//noLoop();\n" \
+                "}\n" \
+                "}\n" \
+
+        cardioidCode[0] = cc
 
 
         
 def run():
     finalCode = initialCode[0]
     finalCode += sinewaveCode[0]
+    finalCode += cardioidCode[0]
     #finalCode += circleCode[0]    
     #finalCode += "\n } "
 
