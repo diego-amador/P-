@@ -115,12 +115,10 @@ def translateCode(p):
 
 
 
-s = '''START
-A = draw : sin(Amplitude=70 and Frequency=75);
-END
-'''
-s = '''START rotate A = draw : circle(Radius = 18) around B = draw : circle(Radius = 20); END'''
-#s = '''START END'''
+
+s = '''START rotate A = draw : circle(Radius = 20) around B = draw : circle(Radius = 20); END'''
+s = '''START END'''
+#s = '''START A = draw : sin(Amplitude=10 and Frequency=75); END'''
 
 result = parser.parse(s)
 

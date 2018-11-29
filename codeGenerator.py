@@ -22,7 +22,7 @@ def render(function):
                 if function[3] == "sin":
                         print(function[3])
                         renderWave()
-                        
+
         if function[0] == "rotate":
                 print("cardiod")
                 renderCardioid()
@@ -33,18 +33,19 @@ def updateValue(property,propertyValue):
         global radiusCheck
         if property=="Amplitude":
                 variables[property]=propertyValue*5
-                print('the attribute :',property,' has a value of ',variables[property])
+                
         if property=="Frequency":
                 variables[property]=propertyValue*10
-                print('the attribute :',property,' has a value of ',variables[property])
+                
         if property == "Radius":
                 if radiusCheck == 1:
                         variables[property] = propertyValue
                         radiusCheck = -1
-                        print('the attribute :',property,' has a value of ',variables[property])
+                        
                 else: 
                         variables["Radius2"] = propertyValue
-                        print('the attribute :',property,' has a value of ',variables["Radius2"])
+        print('the attribute :',property,' has a value of ',propertyValue)
+                        
 
         
     
@@ -121,7 +122,7 @@ def createInitialCode():
                     "void mouseReleased() { \n" \
                     "locked = false; \n" \
                     "} \n" \
-                    "void draw() { \n" \
+                    "void draw() { \n " \
                     "background(0); \n" \
                     "translate(pos.x, pos.y); \n" \
                     "textSize(20); \n" \
