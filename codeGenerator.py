@@ -20,11 +20,11 @@ def render(function):
         if(len(function) > 3):
                 
                 if function[3] == "sin":
-                        print(function[3])
+                        print("Sin")
                         renderWave()
 
         if function[0] == "rotate":
-                print("cardiod")
+                print("Cardiod")
                 renderCardioid()
 
         if function[0] == "g": print("Grid")
@@ -44,7 +44,7 @@ def updateValue(property,propertyValue):
                         
                 else: 
                         variables["Radius2"] = propertyValue
-        print('the attribute :',property,' has a value of ',propertyValue)
+        print('The attribute :',property,' has a value of ',propertyValue)
                         
 
         

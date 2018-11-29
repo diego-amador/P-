@@ -114,11 +114,17 @@ def translateCode(p):
             exit()
 
 
+fname = 'PPPCode.txt'
 
+with open(fname) as f:
+    lines = [line.rstrip('\n') for line in f]
+f.close()
 
-s = '''START rotate A = draw : circle(Radius = 20) around B = draw : circle(Radius = 20); END'''
-s = '''START END'''
-#s = '''START A = draw : sin(Amplitude=10 and Frequency=75); END'''
-
-result = parser.parse(s)
+ppp = ''
+for x in lines:
+    if x == 'START':    x = 'START '
+    if x == 'END':      x = ' END'
+    ppp = ppp + x
+print (ppp)
+result = parser.parse(ppp)
 
