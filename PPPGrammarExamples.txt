@@ -1,0 +1,14 @@
+START
+rotate A = draw : circle(Radius = 20) around B = draw : circle(Radius = 20);
+END
+
+/////
+
+START
+END
+
+/////
+
+START
+A = draw : sin(Amplitude=10 and Frequency=75);
+END
