@@ -1,7 +1,3 @@
 START
-<<<<<<< HEAD
-A = draw: sin ();
-=======
-A = dr sin ();
->>>>>>> 4f6635417c516e188e57997742ea37a79c781303
+rotate A = draw : circle() around B = draw : circle();
 END

@@ -288,6 +288,6 @@ def run():
     os.system("processing-java --sketch=PPP  --present")
     
 
-def cleanUpload():
-        os.system( "upload clean")
+# def cleanUpload():
+#         os.system( "upload clean")
         
